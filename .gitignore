@@ -1,0 +1,10 @@
+build/
+cmake-build-debug/
+cmake-build-release/
+cmake-build-release-coverage/
+cmake-build-release-sanitize/
+cmake-build-release-sanitize-coverage/
+cmake-build-release-sanitize-coverage-sanitize/
+cmake-build-release-sanitize-coverage-sanitize-coverage/
+cmake-build-release-sanitize-coverage-sanitize-coverage-sanitize/
+cmake-build-release-sanitize-coverage-sanitize-coverage-sanitize-coverage/

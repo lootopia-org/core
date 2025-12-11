@@ -1,0 +1,12 @@
+{
+  "name": "lootopia-core",
+  "version": "1.0.0",
+  "description": "Lootopia Core C Module",
+  "dependencies": [
+    "librdkafka",
+    "curl",
+    "libwebsockets",
+    "protobuf",
+    "grpc"
+  ]
+}
