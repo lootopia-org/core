@@ -24,5 +24,7 @@ typedef struct {
 
 config_t *get_config(EMPTY);
 
+void free_config(IN config_t *config);
+
 #endif 
 

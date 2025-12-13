@@ -68,7 +68,7 @@ install(DIRECTORY inc/ DESTINATION include FILES_MATCHING PATTERN "*.h")
 
 if(EXISTS ${CMAKE_SOURCE_DIR}/.env)
     file(COPY ${CMAKE_SOURCE_DIR}/.env
-            DESTINATION ${CMAKE_BINARY_DIR}/.env)
+            DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
 message(STATUS "")

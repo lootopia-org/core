@@ -50,6 +50,18 @@ config_t *get_config(EMPTY) {
         }
     }
 
+    destroy_dotenv_array(env);
+
     return config;
+}
+
+void free_config(IN config_t *config) {
+    if (!config) return;
+    free(config->kafka_brokers);
+    free(config->kafka_consumer_topic);
+    free(config->kafka_producer_topic);
+    free(config->kafka_group_id);
+    free(config->interface);
+    free(config);
 }
 

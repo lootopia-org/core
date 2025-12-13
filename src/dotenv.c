@@ -55,3 +55,12 @@ dotenv_array_t *read_dot_env(EMPTY) {
   return result;
 }
 
+void destroy_dotenv_array(IN dotenv_array_t *array) {
+    if (!array) return;
+    for (size_t i = 0; i < array->count; i++) {
+        free(array->items[i].name);
+        free(array->items[i].value);
+    }
+    free(array->items);
+    free(array);
+}

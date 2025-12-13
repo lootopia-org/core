@@ -30,12 +30,14 @@ int main(EMPTY) {
     if (!consumer_queue || !producer_queue) {
         if (consumer_queue) message_queue_destroy(consumer_queue);
         if (producer_queue) message_queue_destroy(producer_queue);
+        free_config(config);
         ERROR_EXIT("Failed to create message queues");
     }
     
     if (kafka_producer_start(&producer, config, producer_queue, &running) != 0) {
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
+        free_config(config);
         ERROR_EXIT("Failed to start Kafka producer");
     }
     
@@ -43,6 +45,7 @@ int main(EMPTY) {
         kafka_producer_stop(&producer);
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
+        free_config(config);
         ERROR_EXIT("Failed to start Kafka consumer");
     }
     
@@ -54,6 +57,7 @@ int main(EMPTY) {
         kafka_producer_stop(&producer);
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
+        free_config(config);
         ERROR_EXIT("Failed to start WebSocket server");
     }
 
@@ -66,6 +70,7 @@ int main(EMPTY) {
     websocket_server_destroy(server);
     message_queue_destroy(consumer_queue);
     message_queue_destroy(producer_queue);
+    free_config(config);
     return EXIT_SUCCESS;
 }
 

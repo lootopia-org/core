@@ -121,7 +121,7 @@ static int callback_ws(IN struct lws *wsi, IN enum lws_callback_reasons reason,
             }
         
             broadcast_to_clients((const char *)in, len);
-            if (g_server->producer_queue) {
+            if (!g_server && g_server->producer_queue) {
                 if (!message_queue_push(g_server->producer_queue, (const char *)in, len)) {
                     LOG_WARN("%s", "Failed to forward message to Kafka producer queue");
                 }
