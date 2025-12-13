@@ -22,16 +22,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include_directories(${CMAKE_SOURCE_DIR}/inc)
 
-file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
-file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/inc/*.h")
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/src/*.c")
+file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/inc/*.h")
 
 find_package(Threads REQUIRED)
 
 find_package(RdKafka CONFIG REQUIRED)
 find_package(CURL REQUIRED)
 find_package(libwebsockets CONFIG REQUIRED)
-find_package(Protobuf CONFIG REQUIRED)
-find_package(gRPC CONFIG REQUIRED)
+
 
 add_definitions(-D_GNU_SOURCE)
 add_definitions(-DHAVE_RDKAFKA)
@@ -49,9 +48,6 @@ target_link_libraries(${PROJECT_NAME}
         RdKafka::rdkafka++
         CURL::libcurl
         websockets
-        gRPC::grpc
-        gRPC::grpc++
-        protobuf::libprotobuf
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
@@ -69,6 +65,11 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(DIRECTORY inc/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/.env)
+    file(COPY ${CMAKE_SOURCE_DIR}/.env
+            DESTINATION ${CMAKE_BINARY_DIR}/.env)
+endif()
 
 message(STATUS "")
 message(STATUS "============= Lootopia Core =============")
