@@ -5,8 +5,6 @@
   "dependencies": [
     "librdkafka",
     "curl",
-    "libwebsockets",
-    "protobuf",
-    "grpc"
+    "libwebsockets"
   ]
 }

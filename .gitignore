@@ -8,3 +8,5 @@ cmake-build-release-sanitize-coverage-sanitize/
 cmake-build-release-sanitize-coverage-sanitize-coverage/
 cmake-build-release-sanitize-coverage-sanitize-coverage-sanitize/
 cmake-build-release-sanitize-coverage-sanitize-coverage-sanitize-coverage/
+
+.env
