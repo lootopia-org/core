@@ -27,3 +27,5 @@ RUN mkdir build && \
         -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake && \
     cmake --build build --config Release
 
+
+CMD ["./build/bin/Core"]
