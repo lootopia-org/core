@@ -34,8 +34,7 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
-  volumes:
-    - name: env-file
-      hostPath:
-        path: /root/envFiles
-        type: Directory
+      volumes:
+        - name: env-file
+          configMap:
+            name: env
