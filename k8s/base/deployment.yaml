@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: env-file
-              mountPath: /app/build/.env
+              mountPath: /app/.env
               subPath: .env
           ports:
             - containerPort: 8080
