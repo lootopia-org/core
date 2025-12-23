@@ -29,13 +29,6 @@ spec:
           env:
             - name: ENV
               value: "base"
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
       volumes:
         - name: env-file
           configMap:
