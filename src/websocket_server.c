@@ -84,12 +84,22 @@ static int callback_ws(IN struct lws *wsi, IN enum lws_callback_reasons reason,
             LOG_INFO("%s","WebSocket protocol initialized");
             break;
 
+        case LWS_CALLBACK_FILTER_PROTOCOL_CONNECTION: {
+            const char *expected_secret = g_server->websocket_service_secret;
+            char buf[256];
+            int len = lws_hdr_copy(wsi, buf, sizeof(buf), WSI_TOKEN_HTTP_AUTHORIZATION);
+            if (len <= 0 || !expected_secret || strcmp(buf, expected_secret) != 0) {
+                LOG_WARN("%s", "Connection rejected: invalid service secret");
+                return -1;
+            }
+            break;
+        }
+
         case LWS_CALLBACK_ESTABLISHED:
             pss->ring = lws_ring_create(sizeof(msg_t), WEBSOCKET_SERVER_RING_SIZE, destroy_message);
             pss->tail = 0;
             pss->wsi = wsi;
             append_client(pss);
-            LOG_INFO("%s", "Client connected");
             break;
 
         case LWS_CALLBACK_SERVER_WRITEABLE: {
@@ -133,7 +143,6 @@ static int callback_ws(IN struct lws *wsi, IN enum lws_callback_reasons reason,
             if (pss->ring) {
                 lws_ring_destroy(pss->ring);
             }
-            LOG_INFO("%s", "Client disconnected");
             break;
 
         default:
@@ -164,6 +173,7 @@ websocket_server_t *websocket_server_create(IN const config_t *cfg,
     server->producer_queue = producer_queue;
     server->running = running_flag;
     server->port = cfg->port;
+    server->websocket_service_secret = cfg->websocket_service_secret;
     pthread_mutex_init(&server->clients_lock, NULL);
 
     memset(&info, 0, sizeof(info));
