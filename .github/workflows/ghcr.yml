@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - int
       - dev
   workflow_dispatch:
 
