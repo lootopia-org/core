@@ -40,7 +40,7 @@ jobs:
         languages: c-cpp
         build-mode: manual
         paths-ignore:
-          - '**/vcpkg*/**'
+          - 'vcpkg*/**'
 
     - name: Configure CMake (vcpkg toolchain)
       run: |
