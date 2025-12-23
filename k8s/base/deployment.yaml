@@ -25,10 +25,7 @@ spec:
               mountPath: /app/.env
               subPath: .env
           ports:
-            - name: http
-              protocol: TCP
-              port: 80         
-              targetPort: 80   
+            - containerPort: 80
           env:
             - name: ENV
               value: "base"
