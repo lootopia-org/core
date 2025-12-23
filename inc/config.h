@@ -11,8 +11,6 @@ typedef struct Config {
     char *kafka_producer_topic;
     char *kafka_group_id;
     char *interface;
-    char *ssl_cert_path;
-    char *ssl_priv_path;
     int message_queue_capacity;
     int kafka_poll_timeout_ms;
 } config_t;
