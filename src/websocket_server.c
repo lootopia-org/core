@@ -172,7 +172,9 @@ websocket_server_t *websocket_server_create(IN const config_t *cfg,
     info.protocols = protocols;
     info.gid = -1;
     info.uid = -1;
-    info.options = LWS_SERVER_OPTION_VALIDATE_UTF8 | LWS_SERVER_OPTION_DISABLE_IPV6;
+    info.options = LWS_SERVER_OPTION_VALIDATE_UTF8 | LWS_SERVER_OPTION_DISABLE_IPV6 | LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
+    info.ssl_cert_filepath = cfg->ssl_cert_path;
+    info.ssl_private_key_filepath = cfg->ssl_priv_path;
     info.user = server;
 
     server->context = lws_create_context(&info);
