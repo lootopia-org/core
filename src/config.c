@@ -21,6 +21,8 @@ config_t *get_config(EMPTY) {
         {"KAFKA_PRODUCER_TOPIC", &config->kafka_producer_topic, STR_T},
         {"KAFKA_GROUP_ID", &config->kafka_group_id, STR_T},
         {"INTERFACE", &config->interface, STR_T},
+        {"SSL_FILE_PATH", &config->ssl_cert_path, STR_T},
+        {"SSL_PRIV_KEY", &config->ssl_priv_path, STR_T},
         {"MSG_QUEUE_CAP", &config->message_queue_capacity, INT_T},
         {"KAFKA_POLL", &config->kafka_poll_timeout_ms, INT_T}
     };
