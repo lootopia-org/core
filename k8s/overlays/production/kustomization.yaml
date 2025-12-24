@@ -11,5 +11,5 @@ patches:
 
 images:
   - name: ghcr.io/lootopia-org/core
-    newTag: v1.0.0
+    newTag: main
 
