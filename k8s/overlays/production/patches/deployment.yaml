@@ -8,10 +8,6 @@ spec:
     spec:
       containers:
         - name: core
-          volumeMounts:
-            - name: env-file
-              mountPath: /app/.env
-              subPath: .env-prod
           env:
             - name: ENV
               value: "production"
@@ -21,5 +17,5 @@ spec:
               memory: "256Mi"
             limits:
               cpu: "500m"
-              memory: "1Gi"
+              memory: "512mi"
 
