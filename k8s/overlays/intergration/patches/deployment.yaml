@@ -8,6 +8,10 @@ spec:
     spec:
       containers:
         - name: core
+          volumeMounts:
+            - name: env-file
+              mountPath: /app/.env
+              subPath: .env-int
           env:
             - name: ENV
               value: "intergration"

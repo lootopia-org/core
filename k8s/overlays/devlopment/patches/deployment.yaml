@@ -8,6 +8,10 @@ spec:
     spec:
       containers:
         - name: core
+          volumeMounts:
+            - name: env-file
+              mountPath: /app/.env
+              subPath: .env-dev
           env:
             - name: ENV
               value: "development"

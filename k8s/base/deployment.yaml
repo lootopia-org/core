@@ -20,22 +20,11 @@ spec:
         - name: core
           image: ghcr.io/lootopia-org/core:latest
           imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: env-file
-              mountPath: /app/.env
-              subPath: .env
           ports:
             - containerPort: 80
           env:
             - name: ENV
               value: "base"
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
       volumes:
         - name: env-file
           configMap:
