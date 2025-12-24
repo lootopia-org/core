@@ -11,5 +11,5 @@ patches:
 
 images:
   - name: ghcr.io/lootopia-org/core
-    newTag: integration
+    newTag: int
 

@@ -12,8 +12,6 @@
 #define WEBSOCKET_SERVER_RING_SIZE 64
 #define WEBSOCKET_SINGLE_TAIL 1
 
-typedef struct websocket_server websocket_server_t;
-
 typedef struct MSG {
     void *payload;
     size_t len;
@@ -36,6 +34,7 @@ typedef struct websocket_server {
     pthread_mutex_t clients_lock;
     session_t *clients;
     int port;
+    char *websocket_service_secret;
 } websocket_server_t;
 
 websocket_server_t *websocket_server_create(IN const config_t *cfg,

@@ -10,5 +10,4 @@ spec:
         - name: core
           env:
             - name: ENV
-              value: "integration"
-
+              value: "intergration"

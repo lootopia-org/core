@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - int
+      - dev
   workflow_dispatch:
 
 permissions:
@@ -38,4 +40,5 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
 
