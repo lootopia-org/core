@@ -23,12 +23,19 @@ spec:
           volumeMounts:
             - name: env-file
               mountPath: /app/.env
-              subpath: .env
+              subPath: .env
           ports:
             - containerPort: 80
           env:
             - name: ENV
               value: "base"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
       volumes:
         - name: env-file
           configMap:
