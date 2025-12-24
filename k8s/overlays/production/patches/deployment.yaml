@@ -11,7 +11,7 @@ spec:
           volumeMounts:
             - name: env-file
               mountPath: /app/.env
-              subPath: .env-prod
+              subPath: .env-int
           env:
             - name: ENV
               value: "production"
@@ -20,6 +20,6 @@ spec:
               cpu: "250m"
               memory: "256Mi"
             limits:
-              cpu: "500m"
+              cpu: "1000m"
               memory: "1Gi"
 
