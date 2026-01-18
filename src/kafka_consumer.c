@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../inc/config.h"
+// #include "../inc/config.h"
 #include "../inc/kafka_consumer.h"
 #include "../inc/log.h"
 #include "../inc/message_queue.h"
