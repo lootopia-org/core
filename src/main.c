@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../inc/C/config.h"
+#include "../inc/env.h"
 #include "../inc/kafka_consumer.h"
 #include "../inc/kafka_producer.h"
 #include "../inc/message_queue.h"
 #include "../inc/websocket_server.h"
 #include "../inc/C/errors.h"
 #include "../inc/C/arguments.h"
+#include "../inc/C/config.h"
 #include "../inc/C/macros.h"
 
 static volatile sig_atomic_t running = 1;
@@ -22,7 +23,9 @@ int main(EMPTY) {
     kafka_consumer_t consumer;
     kafka_producer_t producer;
     websocket_server_t *server;
-    config_t *config = create_config();
+    config_t *config = {0}; 
+    int entry_len = GET_ARRAY_LENGTH(entries);
+    load_config(config, entries, entry_len);
     message_queue_t *consumer_queue = message_queue_create((size_t)config->message_queue_capacity);
     message_queue_t *producer_queue = message_queue_create((size_t)config->message_queue_capacity);
     signal(SIGINT, handle_signal);
@@ -31,14 +34,14 @@ int main(EMPTY) {
     if (!consumer_queue || !producer_queue) {
         if (consumer_queue) message_queue_destroy(consumer_queue);
         if (producer_queue) message_queue_destroy(producer_queue);
-        destroy_config(config);
+        free_config(config, entries, entry_len);
         ERROR_EXIT("Failed to create message queues");
     }
     
     if (kafka_producer_start(&producer, config, producer_queue, &running) != 0) {
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
-        destroy_config(config);
+        free_config(config, entries, entry_len);
         ERROR_EXIT("Failed to start Kafka producer");
     }
     
@@ -46,7 +49,7 @@ int main(EMPTY) {
         kafka_producer_stop(&producer);
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
-        destroy_config(config);
+        free_config(config, entries, entry_len);
         ERROR_EXIT("Failed to start Kafka consumer");
     }
     
@@ -58,7 +61,7 @@ int main(EMPTY) {
         kafka_producer_stop(&producer);
         message_queue_destroy(consumer_queue);
         message_queue_destroy(producer_queue);
-        destroy_config(config);
+        free_config(config, entries, entry_len);
         ERROR_EXIT("Failed to start WebSocket server");
     }
 
@@ -71,7 +74,7 @@ int main(EMPTY) {
     websocket_server_destroy(server);
     message_queue_destroy(consumer_queue);
     message_queue_destroy(producer_queue);
-    destroy_config(config);
+    free_config(config, entries, entry_len);
     return EXIT_SUCCESS;
 }
 
