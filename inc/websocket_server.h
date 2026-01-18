@@ -1,7 +1,7 @@
 #ifndef LOOTOPIA_WEBSOCKET_SERVER_H
 #define LOOTOPIA_WEBSOCKET_SERVER_H
 
-#include "config.h"
+#include "env.h"
 #include "message_queue.h"
 #include "kafka_producer.h"
 #include "C/arguments.h"

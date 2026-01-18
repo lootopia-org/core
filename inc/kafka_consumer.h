@@ -1,7 +1,7 @@
 #ifndef LOOTOPIA_KAFKA_CONSUMER_H
 #define LOOTOPIA_KAFKA_CONSUMER_H
 
-#include "config.h"
+#include "env.h"
 #include "message_queue.h"
 #include "C/arguments.h"
 #include <librdkafka/rdkafka.h>
