@@ -1,8 +1,6 @@
-#ifndef LOOTOPIA_CONFIG_H
-#define LOOTOPIA_CONFIG_H
+#pragma once
 
-#include "../inc/C/arguments.h"
-#include <stddef.h>
+#include "C/config.h"
 
 typedef struct Config {
     int port;
@@ -16,16 +14,5 @@ typedef struct Config {
     int kafka_poll_timeout_ms;
 } config_t;
 
-typedef struct {
-    const char *key;          
-    void *dest;               
-    enum { INT_T, STR_T } type;
-} config_entry_t;
-
-
-config_t *get_config(EMPTY);
-
-void free_config(IN config_t *config);
-
-#endif 
-
+config_t *create_config();
+void destroy_config(config_t *config);
