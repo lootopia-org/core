@@ -1,7 +1,20 @@
+#pragma once
+
+#include "C/config.h"
 #include <stddef.h>
-#include <stdlib.h>
-#include "../inc/config.h"
-#include "../inc/C/macros.h"
+
+typedef struct Config {
+    int port;
+    char *kafka_brokers;
+    char *kafka_consumer_topic;
+    char *kafka_producer_topic;
+    char *kafka_group_id;
+    char *interface;
+    char *websocket_service_secret;
+    int message_queue_capacity;
+    int kafka_poll_timeout_ms;
+} config_t;
+
 
 static const ConfigEntry entries[] = {
     {"PORT", offsetof(config_t, port), INT_T},
@@ -14,15 +27,3 @@ static const ConfigEntry entries[] = {
     {"MSG_QUEUE_CAP", offsetof(config_t, message_queue_capacity), INT_T},
     {"KAFKA_POLL", offsetof(config_t, kafka_poll_timeout_ms), INT_T}
 };
-
-config_t *create_config(){
-    config_t *config = malloc(sizeof(config_t));
-    load_config(config, entries, GET_ARRAY_LENGTH(entries));
-    return config;
-}
-
-void destroy_config(config_t *config){
-  free_config(config, entries, GET_ARRAY_LENGTH(entries)); 
-}
-
-
