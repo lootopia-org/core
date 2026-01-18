@@ -1,6 +1,7 @@
 #pragma once
 
 #include "C/config.h"
+#include "C/macros.h"
 #include <stddef.h>
 
 typedef struct Config {
@@ -27,3 +28,4 @@ static const ConfigEntry entries[] = {
     {"MSG_QUEUE_CAP", offsetof(config_t, message_queue_capacity), INT_T},
     {"KAFKA_POLL", offsetof(config_t, kafka_poll_timeout_ms), INT_T}
 };
+
