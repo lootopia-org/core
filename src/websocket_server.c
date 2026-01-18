@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../inc/config.h"
 #include "../inc/log.h"
 #include "../inc/message_queue.h"
 #include "../inc/websocket_server.h"

@@ -2,7 +2,7 @@
 #define LOOTOPIA_KAFKA_PRODUCER_H
 
 #include "C/arguments.h"
-#include "config.h"
+#include "env.h"
 #include "message_queue.h"
 #include <pthread.h>
 #include <signal.h>
