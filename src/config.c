@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "../inc/config.h"
-#include "../inc/dotenv.h"
+#include "../inc/C/dotenv.h"
 #include "../inc/C/errors.h"
 #include "../inc/C/macros.h"
 
