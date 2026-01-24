@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define CONFIG_INIT_LIB
 #include "../inc/env.h"
 #include "../inc/kafka_consumer.h"
 #include "../inc/kafka_producer.h"
